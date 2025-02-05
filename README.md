@@ -63,5 +63,6 @@ Both databases and RabbitMQ are containerized using Docker.
 
 ##Demostration
 
-https://github.com/user-attachments/assets/3dd5d955-7625-4911-90a5-6ff84ade87da
+https://github.com/user-attachments/assets/9b910dd1-d60d-43d5-a249-a6d13207917a
+
 
