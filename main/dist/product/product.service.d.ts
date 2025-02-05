@@ -3,9 +3,9 @@ import { Model } from 'mongoose';
 export declare class ProductService {
     private readonly productModel;
     constructor(productModel: Model<ProductDocument>);
-    all(): Promise<(import("mongoose").Document<unknown, {}, ProductDocument> & Product & import("mongoose").Document<unknown, any, any> & Required<{
-        _id: unknown;
-    }> & {
-        __v: number;
-    })[]>;
+    all(): Promise<Product[]>;
+    create(data: any): Promise<Product>;
+    findOne(id: number): Promise<Product | null>;
+    update(id: number, data: any): Promise<any>;
+    delete(id: number): Promise<void>;
 }

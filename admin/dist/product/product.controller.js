@@ -22,26 +22,39 @@ let ProductController = class ProductController {
         this.client = client;
     }
     async all() {
-        this.client.emit('hello', 'Holis desde rabbitmq');
         return this.productService.all();
     }
     async create(title, image) {
-        return this.productService.create({
+        const product = await this.productService.create({
             title,
             image,
         });
+        this.client.emit('product_created', product);
+        return product;
     }
     async get(id) {
         return this.productService.get(id);
     }
     async update(id, title, image) {
-        return this.productService.update(id, {
+        await this.productService.update(id, {
             title,
             image,
         });
+        const product = await this.productService.get(id);
+        this.client.emit('product_updated', product);
+        return product;
     }
     async delete(id) {
-        return this.productService.delete(id);
+        await this.productService.delete(id);
+        this.client.emit('product_deleted', id);
+    }
+    async like(id) {
+        const product = await this.productService.get(id);
+        if (product) {
+            return this.productService.update(id, {
+                likes: product.likes + 1
+            });
+        }
     }
 };
 exports.ProductController = ProductController;
@@ -82,6 +95,13 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "delete", null);
+__decorate([
+    (0, common_1.Post)(':id/like'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ProductController.prototype, "like", null);
 exports.ProductController = ProductController = __decorate([
     (0, common_1.Controller)('products'),
     __param(1, (0, common_1.Inject)('PRODUCT_SERVICE')),

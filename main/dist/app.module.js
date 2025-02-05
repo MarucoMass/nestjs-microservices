@@ -23,13 +23,13 @@ exports.AppModule = AppModule = __decorate([
                 envFilePath: './.env',
                 isGlobal: true,
             }),
-            mongoose_1.MongooseModule.forRoot(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}`, {
+            mongoose_1.MongooseModule.forRoot(`mongodb://localhost:${process.env.MONGO_PORT}/${process.env.MONGO_DB}`, {
                 authSource: 'admin',
                 user: process.env.MONGO_USER,
                 pass: process.env.MONGO_PASSWORD,
                 autoCreate: true
             }),
-            product_module_1.ProductModule
+            product_module_1.ProductModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

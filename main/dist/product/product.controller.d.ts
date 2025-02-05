@@ -1,11 +1,12 @@
 import { ProductService } from './product.service';
+import { HttpService } from '@nestjs/axios';
 export declare class ProductController {
     private productService;
-    constructor(productService: ProductService);
-    all(): Promise<(import("mongoose").Document<unknown, {}, import("./product.model").ProductDocument> & import("./product.model").Product & import("mongoose").Document<unknown, any, any> & Required<{
-        _id: unknown;
-    }> & {
-        __v: number;
-    })[]>;
-    hello(data: string): Promise<void>;
+    private HttpService;
+    constructor(productService: ProductService, HttpService: HttpService);
+    all(): Promise<import("./product.model").Product[]>;
+    like(id: number): Promise<any>;
+    productCreated(product: any): Promise<void>;
+    productUpdated(product: any): Promise<void>;
+    productDeleted(id: number): Promise<void>;
 }
