@@ -61,7 +61,7 @@ Both databases and RabbitMQ are containerized using Docker.
    # Main (RabbitMQ)
    npm run listen
 
-##Demostration
+## Demostration
 
 https://github.com/user-attachments/assets/9b910dd1-d60d-43d5-a249-a6d13207917a
 
